@@ -13,6 +13,6 @@ module.exports = app => {
     });
     req.user.credits += 5;
     const user = req.user.save ();
-    res.send (user);
+    res.send (req.user);
   });
 };

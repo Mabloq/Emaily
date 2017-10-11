@@ -5,7 +5,6 @@ import Payment from './Payments';
 
 class Header extends Component {
   renderContent () {
-    console.log (this.props.auth);
     switch (this.props.auth) {
       case null:
         return;
