@@ -11,21 +11,27 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhooks\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "webhooks": "./sendgrid_webhook.sh"
   },
   "author": "Matthew Arcila",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.0",
     "cookie": "^0.3.1",
     "cookie-session": "^1.3.2",
     "express": "^4.16.1",
+    "localtunnel": "^1.8.3",
+    "lodash": "^4.17.4",
     "mongoose": "^4.11.14",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
+    "path-parser": "^2.0.2",
+    "sendgrid": "^5.2.3",
     "session": "^0.1.0",
     "stripe": "^5.1.1"
   }
