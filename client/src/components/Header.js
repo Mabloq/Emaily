@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import Payment from './Payments';
 
 class Header extends Component {
@@ -9,7 +9,11 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return <li><a href="/auth/google">Login with Google</a></li>;
+        return (
+          <li>
+            <a href="/auth/google" className="black-text">Login with Google</a>
+          </li>
+        );
 
       default:
         return [
@@ -17,7 +21,9 @@ class Header extends Component {
           <li key="2" style={{margin: '0 50px'}}>
             Credits: {this.props.auth.credits}
           </li>,
-          <li key="3"><a href="/api/logout">Log Out</a></li>,
+          <li key="3">
+            <a href="/api/logout" className="black-text">Log Out</a>
+          </li>,
         ];
     }
   }
@@ -25,15 +31,22 @@ class Header extends Component {
   render () {
     return (
       <div>
-        <nav>
-          <div className="nav-wrapper">
+        <nav style={{zIndex: '99', position: 'fixed', top: 0}}>
+          <div className="nav-wrapper white black-text">
             <Link
               to={this.props.auth ? '/surveys' : '/'}
-              className="brand-logo"
+              style={{left: '5%'}}
+              className="brand-logo black-text"
             >
               Emaily
             </Link>
+
             <ul id="nav-mobile" className="right hide-on-med-and-down">
+              <li>
+                <Link to="/fudge" className="black-text" style={{left: '10%'}}>
+                  Templates
+                </Link>
+              </li>
               {this.renderContent ()}
             </ul>
           </div>

@@ -10,9 +10,6 @@ import reducers from './reducers';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import axios from 'axios';
-
-window.axios = axios;
 
 const store = createStore (reducers, {}, applyMiddleware (reduxThunk, logger));
 

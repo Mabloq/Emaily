@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm} from 'redux-form';
 import SurveyForm from './SurveyForm';
 import FormReview from './SurveyReview';
+// import EmailEditor from 'react-email-editor';
+import {connect} from 'react-redux';
 
 class SurveryNew extends Component {
   constructor (props) {
@@ -26,15 +28,40 @@ class SurveryNew extends Component {
       />
     );
   }
+
+  exportHtml = () => {
+    this.editor.exportHtml (data => {
+      const {design, html} = data;
+      console.log ('exportHtml', html);
+    });
+  };
+  saveDesign = () => {
+    this.editor.saveDesign (design => {
+      console.log ('saveDesign', design);
+    });
+  };
   render () {
     return (
-      <div className="container">
-        {this.renderContent ()}
+      <div style={{marginTop: '125px'}} className="container">
+        <div className="row">
+          {this.renderContent ()}
+        </div>
+
+        <div className="row">
+          <button onClick={this.exportHtml}>Export HTML</button>
+          <button onClick={this.saveDesign}>Save Design</button>
+          {/* <EmailEditor
+            style={{width: '60%', position: 'relative', marginLeft: '-5%'}}
+            ref={editor => (this.editor = editor)}
+          /> */}
+        </div>
       </div>
     );
   }
 }
 
-export default reduxForm ({
+const SurveyRF = reduxForm ({
   form: 'surveyForm',
 }) (SurveryNew);
+
+export default connect () (SurveyRF);

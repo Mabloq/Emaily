@@ -5,6 +5,7 @@ const bodyParser = require ('body-parser');
 const cookieSession = require ('cookie-session');
 const passport = require ('passport');
 const keys = require ('./config/keys');
+
 require ('./models/User');
 require ('./models/Survey');
 require ('./services/passport');
@@ -30,10 +31,16 @@ app.use (
 );
 app.use (passport.initialize ());
 app.use (passport.session ());
+app.use (
+  bodyParser.urlencoded ({
+    extended: true,
+  })
+);
 
 require ('./routes/authRoutes') (app);
 require ('./routes/billingRoutes') (app);
 require ('./routes/surveyRoutes') (app);
+require ('./routes/templateRoutes') (app);
 
 if (process.env.NODE_ENV === 'production') {
   //expeess will serve up production assets

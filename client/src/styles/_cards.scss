@@ -1,0 +1,99 @@
+
+.ads-container {
+   
+}
+
+
+.section-social {
+    //background image
+    background-color: #57b5c7;
+    background-image: linear-gradient(90deg, #57b5c7, #8ed4df);
+    padding: 15vh 0;
+    padding-bottom: 14em;
+   
+    
+    .img {
+        position: absolute;
+       
+        .fade-in-up {
+            -webkit-transform: translate3d(0, 20%, 0);
+            transform: translate3d(0, 20%, 0);
+            .loaded {
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    }
+    img {
+       border-radius: 5px;
+    }
+ 
+     .ig-card {
+        top: 200px;
+        width: 33.942%;
+        left: 32.116%;
+        z-index: 3;
+    }
+    .google-card {
+        position: relative;
+        width: 42.53491% !important;
+    }
+    .fb-card {
+        top: 40px;
+        right: 0% !important;
+        width: 37.80881% !important;
+        top: 140px;
+        z-index: 4;
+    }
+}
+
+//lazy load landing page cards
+.lazy-load {
+    opacity: 0;
+    transition: all 0.5s ease-in;
+}
+.shadow {
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: rgba(0,0,0,0.2) 1px 2px 9px 0px;
+}
+
+
+
+.section .img img {
+    position: relative;
+    z-index: 2;
+}
+.section {
+    padding: 15vh 0 20vh;
+    position: relative
+}
+
+.section h2 {
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -0.015em
+}
+
+
+.section .content p {
+    margin-bottom: 2em
+}
+
+.section .img img {
+    position: relative;
+    z-index: 2
+}
+
+
+.img img {
+    max-width: 100%;
+    display: block
+}
+
+
+
+.section .content {
+    max-width: 900px;
+    position: relative;
+    z-index: 2
+}

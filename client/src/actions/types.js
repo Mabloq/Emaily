@@ -1,2 +1,9 @@
 export const FETCH_USER = 'fetch_user';
 export const FETCH_SURVEYS = 'fetch_surveys';
+export const NEXT_TITLE = 'next_title';
+export const NEXT_LOAD = 'next_load';
+export const UPLOAD_TEMPLATE = 'upload_template';
+export const GET_TEMPLATE = 'get_template';
+export const GET_TEMPLATES = 'get_templates';
+export const EDIT_TEMPLATE = 'edit_template';
+export const DELETE_TEMPLATE = 'delete_template';
