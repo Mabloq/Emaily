@@ -14,6 +14,7 @@ class Mailer extends helper.Mail {
     this.addContent (this.body);
     this.addClickTracking ();
     this.addRecipients ();
+    // this.addSubstitutions();
   }
 
   formatAddresses (recipients) {
@@ -35,6 +36,15 @@ class Mailer extends helper.Mail {
       personalize.addTo (recipient);
     });
 
+    this.addPersonalization (personalize);
+  }
+
+  addSubstitutions (substitions) {
+    const personalize = new helper.Personalization ();
+
+    this.substitions.forEach (substition => {
+      personalize.addSubstitution (substition);
+    });
     this.addPersonalization (personalize);
   }
 

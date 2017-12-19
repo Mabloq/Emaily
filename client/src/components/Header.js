@@ -43,7 +43,11 @@ class Header extends Component {
 
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
-                <Link to="/fudge" className="black-text" style={{left: '10%'}}>
+                <Link
+                  to="/templates"
+                  className="black-text"
+                  style={{left: '10%'}}
+                >
                   Templates
                 </Link>
               </li>

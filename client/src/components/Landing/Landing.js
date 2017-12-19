@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {nextTitle, nextLoad} from '../../actions/UI/nextTitle';
-
+import Footer from '../Footer';
 import googleCard from '../../images/card_g-6f5d862e.jpg';
 import igCard from '../../images/card_instagram-5c3e39d4.jpg';
 import fbCard from '../../images/card_facebook-3f86dea2.jpg';
@@ -146,7 +146,7 @@ class Landing extends Component {
           </section>
           {/* END SOCIAL SECTION */}
         </main>
-
+        <Footer />
       </div>
     );
   }

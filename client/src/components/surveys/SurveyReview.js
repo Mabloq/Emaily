@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import fields from './formFields';
 import * as actions from '../../actions';
 import {withRouter} from 'react-router-dom';
+import _ from 'lodash';
 
 const SurveyReview = ({onCancelSubmit, formValues, submitSurvey, history}) => {
   const formFields = fields.map (({label, name}, i) => {
@@ -18,7 +19,10 @@ const SurveyReview = ({onCancelSubmit, formValues, submitSurvey, history}) => {
     <div>
       <h5>Review Your Survey</h5>
       {formFields}
-
+      <div>
+        <label>Template</label>
+        <div>{formValues['template']}</div>
+      </div>
       <button
         className="yellow darken-3 white-text btn-flat"
         onClick={onCancelSubmit}

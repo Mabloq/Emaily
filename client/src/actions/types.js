@@ -7,3 +7,4 @@ export const GET_TEMPLATE = 'get_template';
 export const GET_TEMPLATES = 'get_templates';
 export const EDIT_TEMPLATE = 'edit_template';
 export const DELETE_TEMPLATE = 'delete_template';
+export const FETCH_DROPDOWN = 'fetch_dropdown';

@@ -8,39 +8,41 @@ import {setTimeout} from 'timers';
 class Template extends Component {
   constructor (props, context) {
     super (props, context);
-    this.state = {name: ''};
+    this.state = {name: props.match.params.name};
     this.loadDesign = this.loadDesign.bind (this);
   }
   componentDidMount () {
     // Promise.resolve (this.props.getTemplate (this.state.name));
     // // this.props.getTemplate ('emaily');
-    // this.props.getTemplate (this.state.name);
+    const {params} = this.props.match;
+    this.props.getTemplate (params.id, params.name);
   }
+
   saveDesign = () => {
     this.editor.saveDesign (design => {
-      this.props.uploadTemplate (design, this.state.name);
+      this.props.uploadTemplate (design, this.props.match.params.name);
     });
   };
   loadDesign = () => {
     if (this.editor !== undefined) {
-      this.editor.loadDesign (this.props.template);
+      this.editor.loadDesign (this.props.json);
     } else {
-      setTimeout (() => this.editor.loadDesign (this.props.template), 2000);
+      setTimeout (() => this.editor.loadDesign (this.props.json), 2000);
     }
   };
 
   handleChange (event) {
     this.setState ({name: event.target.value});
   }
-  handleClick (name) {
-    this.setState ({name});
-    this.props.getTemplate (this.state.name).then (design => {
-      this.loadDesign (design);
-    });
+  deleteTemplate (id, name) {
+    this.props.deleteTemplate (id, name);
   }
+
   render () {
+    const {template, json} = this.props;
+
     return (
-      <div style={{marginTop: '65px', height: '100vh'}}>
+      <div style={{marginTop: '65px'}}>
         <div
           style={{
             backgroundColor: '#eee',
@@ -58,11 +60,10 @@ class Template extends Component {
             value={this.state.name}
           />
           <button
-            onClick={() => this.handleClick (this.state.name)}
-            className="btn right"
+            onClick={() => this.deleteTemplate (template._id, template.name)}
+            className="btn btn-danger right"
           >
-            load
-            <i className="material-icons right">delete_forever</i>
+            Delete
           </button>
           <button
             onClick={() => this.saveDesign ()}
@@ -89,11 +90,10 @@ class Template extends Component {
   }
 }
 
-const TemplateRF = reduxForm ({
-  form: 'templateForm',
-}) (Template);
-
 const mapStateToProps = state => {
-  return {template: state.template.currentTemplate};
+  return {
+    template: state.template.currentTemplate,
+    json: state.template.templateJson,
+  };
 };
-export default connect (mapStateToProps, actions) (TemplateRF);
+export default connect (mapStateToProps, actions) (Template);

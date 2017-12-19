@@ -7,24 +7,33 @@ import {
 } from './types';
 import axios from 'axios';
 
-export const getTemplate = name => async dispatch => {
-  console.log (name);
-  const res = await axios.get ('/api/template/' + name);
+export const getTemplate = (id, name) => async dispatch => {
+  const res = await axios.get (`/api/template/${id}/${name}`);
   dispatch ({
     payload: res.data,
     type: GET_TEMPLATE,
   });
 };
 
-export const getTemplates = (json, name) => async dispatch => {
+export const getTemplates = () => async dispatch => {
+  const res = await axios.get ('/api/templates');
   dispatch ({
-    payload: {},
+    payload: res.data,
     type: GET_TEMPLATES,
   });
 };
 
-export const uploadTemplate = (json, name) => async dispatch => {
-  const res = await axios.post ('/api/template/upload', {json, name});
+export const uploadTemplate = (
+  html,
+  json,
+  {name, category}
+) => async dispatch => {
+  const res = await axios.post ('/api/template/upload', {
+    html,
+    json,
+    form: {name, category},
+  });
+
   dispatch ({
     payload: res.data,
     type: UPLOAD_TEMPLATE,
@@ -40,11 +49,10 @@ export const editTemplate = (json, name) => {
   };
 };
 
-export const deleteTemplate = (json, name) => {
-  return dispatch => {
-    dispatch ({
-      payload: {},
-      type: DELETE_TEMPLATE,
-    });
-  };
+export const deleteTemplate = (id, name) => async dispatch => {
+  const res = await axios.delete (`/api/template/${id}/${name}`);
+  dispatch ({
+    payload: res.data,
+    type: DELETE_TEMPLATE,
+  });
 };

@@ -1,11 +1,13 @@
 const _ = require ('lodash');
 const Path = require ('path-parser');
+const fs = require ('fs');
 const {URL} = require ('url');
 const mongoose = require ('mongoose');
 mongoose.Promise = require ('bluebird');
 const requireLogin = require ('../middlewares/requireLogin');
 const requireCredits = require ('../middlewares/requireCredits');
 const Survey = mongoose.model ('surveys');
+const Template = mongoose.model ('templates');
 const Mailer = require ('../services/mailer');
 const surveyTemplate = require ('../services/emailTemplates');
 
@@ -22,7 +24,8 @@ module.exports = app => {
   });
 
   app.post ('/api/surveys', requireLogin, requireCredits, async (req, res) => {
-    const {title, subject, body, recipients} = req.body;
+    const {title, subject, body, recipients, template} = req.body;
+    console.log (template);
     const survey = new Survey ({
       title,
       subject,
@@ -33,7 +36,13 @@ module.exports = app => {
       _user: req.user.id,
       dateSent: Date.now (),
     });
-    const mailer = new Mailer (survey, surveyTemplate (survey));
+
+    const temPlate = await Template.findOne ({name: template});
+    const htmlTemplate = fs.readFileSync (
+      `templates/html/${temPlate.name}.html`,
+      'utf8'
+    );
+    const mailer = new Mailer (survey, htmlTemplate);
 
     try {
       await mailer.send ();

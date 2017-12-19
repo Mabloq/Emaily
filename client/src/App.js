@@ -9,7 +9,9 @@ import Landing from './components/Landing/Landing';
 import Dashboard from './components/Dashboard';
 import SurveyNew from './components/surveys/SurveyNew';
 import Template from './components/Template';
-import Templates from './components/Template/Templates';
+import Templates from './components/Template/Templates/index';
+import TemplateNew from './components/Template/TemplateNew';
+
 import 'normalize.css';
 import './App.css';
 
@@ -25,10 +27,11 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
+            <Route exact path="/template/new" component={TemplateNew} />
             <Route path="/surveys/new" component={SurveyNew} />
-            <Route path="/fudge" component={Templates} />
-            <Route path="/template" component={Template} />
-            <Footer />
+            <Route path="/templates" component={Templates} />
+            <Route path="/template/:id/:name" component={Template} />
+
           </div>
         </BrowserRouter>
       </div>

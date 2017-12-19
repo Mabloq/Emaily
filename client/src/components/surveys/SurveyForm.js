@@ -2,11 +2,19 @@ import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {Link} from 'react-router-dom';
 import SurveyField from './SurveyField';
+import {connect} from 'react-redux';
+import {fetchTemplateDropdown} from '../../actions/index';
 import _ from 'lodash';
 import validateEmails from '../../utils/validateEmails';
 import fields from './formFields';
+import TemplateField from './TemplateField';
+import Dropdown
+  from 'semantic-ui-react/dist/commonjs/modules/Dropdown/Dropdown';
 
 class SurveyForm extends Component {
+  componentDidMount () {
+    this.props.fetchTemplateDropdown ();
+  }
   renderFields () {
     return fields.map (({label, name}, i) => (
       <Field
@@ -27,6 +35,12 @@ class SurveyForm extends Component {
           )}
         >
           {this.renderFields ()}
+          <Field
+            label="Template"
+            name="template"
+            component={TemplateField}
+            data={this.props.dropdown}
+          />
           <Link to="/surveys" className="red btn-flat white-text left ">
             Cancel
           </Link>
@@ -55,8 +69,17 @@ function validate (values) {
   return errors;
 }
 
+function mapStateToProps (state) {
+  return {
+    dropdown: state.template.dropdown,
+  };
+}
+const ConnectedSurvey = connect (mapStateToProps, {fetchTemplateDropdown}) (
+  SurveyForm
+);
+
 export default reduxForm ({
   validate,
   form: 'surveyForm',
   destroyOnUnmount: false,
-}) (SurveyForm);
+}) (ConnectedSurvey);

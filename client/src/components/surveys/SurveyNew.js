@@ -29,17 +29,6 @@ class SurveryNew extends Component {
     );
   }
 
-  exportHtml = () => {
-    this.editor.exportHtml (data => {
-      const {design, html} = data;
-      console.log ('exportHtml', html);
-    });
-  };
-  saveDesign = () => {
-    this.editor.saveDesign (design => {
-      console.log ('saveDesign', design);
-    });
-  };
   render () {
     return (
       <div style={{marginTop: '125px'}} className="container">
@@ -48,12 +37,7 @@ class SurveryNew extends Component {
         </div>
 
         <div className="row">
-          <button onClick={this.exportHtml}>Export HTML</button>
-          <button onClick={this.saveDesign}>Save Design</button>
-          {/* <EmailEditor
-            style={{width: '60%', position: 'relative', marginLeft: '-5%'}}
-            ref={editor => (this.editor = editor)}
-          /> */}
+          Hey
         </div>
       </div>
     );

@@ -4,11 +4,14 @@ import {
   GET_TEMPLATES,
   EDIT_TEMPLATE,
   DELETE_TEMPLATE,
+  FETCH_DROPDOWN,
 } from '../actions/types';
 
 const INITIAL_STATE = {
   currentTemplate: {},
+  templateJson: {},
   templates: [],
+  dropdown: [],
 };
 
 /**
@@ -26,12 +29,13 @@ export default (state = INITIAL_STATE, action) => {
     case GET_TEMPLATE:
       return {
         ...state,
-        currentTemplate: action.payload,
+        currentTemplate: action.payload._doc,
+        templateJson: action.payload.json,
       };
     case GET_TEMPLATES:
       return {
         ...state,
-        ...action.payload,
+        templates: action.payload,
       };
     case EDIT_TEMPLATE:
       return {
@@ -42,6 +46,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         ...action.payload,
+      };
+    case FETCH_DROPDOWN:
+      return {
+        ...state,
+        dropdown: action.payload,
       };
     default:
       return state;
