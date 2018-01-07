@@ -8,13 +8,14 @@ class Mailer extends helper.Mail {
     this.sgApi = sendgrid (keys.sendGridKey);
     this.from_email = new helper.Email ('no-reply@emaily.com');
     this.subject = subject;
-    this.recipients = this.formatAddresses (recipients);
+    this.recipients = recipients;
+    // this.names = recipients;
     this.body = new helper.Content ('text/html', content);
 
     this.addContent (this.body);
     this.addClickTracking ();
-    this.addRecipients ();
-    // this.addSubstitutions();
+    this.addPersonalizations ();
+    // this.addSubstitutions ();
   }
 
   formatAddresses (recipients) {
@@ -29,24 +30,30 @@ class Mailer extends helper.Mail {
     trackingSettings.setClickTracking (clickTracking);
     this.addTrackingSettings (trackingSettings);
   }
-  addRecipients (recipients) {
-    const personalize = new helper.Personalization ();
+  addPersonalizations () {
+    const firstName = '{{firstName}}';
 
     this.recipients.forEach (recipient => {
-      personalize.addTo (recipient);
+      const personalize = new helper.Personalization ();
+      const email = new helper.Email (recipient.email);
+      const name = new helper.Substitution (firstName, recipient.name);
+      personalize.addTo (email);
+      personalize.addSubstitution (name);
+      this.addPersonalization (personalize);
     });
-
-    this.addPersonalization (personalize);
+    // this.names.forEach (recipient => {
+    //   personalize.addSubstitution (
+    //     new helper.Substitution (firstName, recipient.name)
+    //   );
+    // });
   }
 
-  addSubstitutions (substitions) {
-    const personalize = new helper.Personalization ();
+  // addSubstitutions (substitions, recipients) {
+  //   const sub = new helper.Substitution ();
 
-    this.substitions.forEach (substition => {
-      personalize.addSubstitution (substition);
-    });
-    this.addPersonalization (personalize);
-  }
+  //   const names = this.recipients.map (recipient => recipient.name);
+  //   this.substitions = sub.addSubstitutions (firstName, names);
+  // }
 
   async send () {
     const request = this.sgApi.emptyRequest ({
@@ -54,7 +61,6 @@ class Mailer extends helper.Mail {
       path: '/v3/mail/send',
       body: this.toJSON (),
     });
-
     const response = await this.sgApi.API (request, (error, response) => {
       if (error) {
         console.log ('Error response received');

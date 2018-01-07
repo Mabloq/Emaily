@@ -68,16 +68,20 @@ module.exports = app => {
     const template = await Template.findByIdAndRemove (
       req.params.id,
       (err, template) => {
-        return {
-          msg: `Your ${template.name} template was succesfully deleted`,
-          id: template.id,
-        };
+        if (err) {
+          throw err;
+        }
+        res.json (template);
       }
     );
-    const path = `templates/${req.params.name}.json`;
-    const exists = await fs.statSync (path);
-    await fs.unlink (path, (err, template) => {
-      if (exists) {
+    //check for path json
+    const jsonPath = `templates/json/${req.params.name}.json`;
+    const jsonExists = await fs.statSync (jsonPath);
+    //check for path html
+    const htmlPath = `templates/html/${req.params.name}.html`;
+    const htmlExists = await fs.statSync (htmlPath);
+    await fs.unlink (jsonPath, (err, template) => {
+      if (jsonExists) {
         if (err) {
           console.log ('failed to delete local json:' + err);
         } else {
@@ -86,14 +90,20 @@ module.exports = app => {
       }
     });
 
-    res.status (200).send (template);
+    await fs.unlink (htmlPath, err => {
+      if (htmlExists) {
+        if (err) {
+          console.log ('failed to delete html: ' + err);
+        }
+      }
+    });
   });
   // GET DROPDOWN
   app.get ('/api/templates/dropdown', async (req, res) => {
     const templates = await Template.find ({_user: req.user.id});
 
     const dropdown = templates.map (template => {
-      return {value: template.name, text: template.name};
+      return {value: template.name, label: template.name};
     });
 
     res.send (dropdown);

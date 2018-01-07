@@ -1,0 +1,139 @@
+@media screen and (max-width: 480px) {
+    /* ==================================
+
+
+            LANDING PAGE
+    
+
+    =====================================*/
+    .land-title {
+        h1 {
+            font-size: 48px;
+            text-align: center;
+        }
+    }
+    .editor {
+        .land-title-2 {
+            margin-left: 6%;
+            margin-right: 5%;
+        }
+        img {
+            max-width: 85%;
+        }
+    }
+
+    .track {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        top: 10%;
+        .copy {
+            top: 200px;
+            grid-column: 1/ -1;
+            padding:0px; 
+            margin-top: 80px;
+        }
+        .images {
+            grid-column: 1 / -1;
+            padding: 0px;
+            padding-bottom: 20px;
+            .ig-card {
+                top: 10%;
+                width: 43.942%;
+                left: 7.116%;
+                z-index: 3;
+            }
+            .google-card {
+                position: relative;
+                width: 50.53491% !important;
+                left: 10.116%;
+                z-index: 4;
+            }
+            .fb-card {
+                top: 40px;
+                right:10% !important;
+                width: 43.80881% !important;
+                top: 140px;
+                z-index: 5;
+            }
+        }
+    }
+
+    .automation {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin-left: 8%;
+        .copy {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    
+        }
+        .img {
+            grid-column: 1/ -1 !important;
+            grid-row: 2;
+        }
+    }
+    .trust-section {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-content: center;
+        .slack {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            align-self: center;
+            justify-self: center;
+            margin: 5px;
+            width: 70%;
+        }
+        .marriot {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            align-self: center;
+            justify-self: center;
+            margin: 5px;
+            width: 70%;
+        }
+        .microsoft {
+            grid-column: 1 / -1;
+            grid-row: 3;
+            align-self: center;
+            justify-self: center;
+            margin: 5px;
+            width: 70%;
+        }
+    }
+    .editor {
+        padding: 20px;
+        padding-top: 20%;
+
+        .land-title-2 {
+            margin: 2% 0;
+        }
+        .copy {
+         
+            margin: 5%  6.25%;
+            .p {
+                max-width: 100%;
+            }
+        }
+        img {
+            justify-content: center;
+            margin: 0 auto 0 auto;
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 720px) {
+    .automation {
+        .copy {
+        grid-column: 0/1;
+        padding: 40px;
+        }
+        .img {
+        grid-column: 2/ 3;
+        padding: 40px;
+        }
+    }
+}

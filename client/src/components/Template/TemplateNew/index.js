@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import EmailEditor from 'react-email-editor';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import * as actions from '../../../actions/unlayer';
 import {Grid, Dropdown} from 'semantic-ui-react';
 
@@ -34,16 +35,17 @@ class TemplateNew extends Component {
   exportHtml = () => {
     this.editor.exportHtml (data => {
       const {design, html} = data;
-      this.props.uploadTemplate (html, design, {
-        name: this.state.name,
-        category: this.state.value,
-      });
+      this.props
+        .uploadTemplate (html, design, {
+          name: this.state.name,
+          category: this.state.value,
+        })
+        .then (this.props.history.push ('/templates'));
     });
   };
   handleSelect = (e, {value}) => this.setState ({value});
 
   render () {
-    const {value} = this.state;
     return (
       <div style={{marginTop: '80px'}}>
         <Grid
@@ -95,9 +97,12 @@ class TemplateNew extends Component {
             position: 'relative',
             marginLeft: '-5%',
           }}
+          options={{
+            mergeTags: [{name: 'First Name', value: '{{firstName}}'}],
+          }}
         />
       </div>
     );
   }
 }
-export default connect (null, actions) (TemplateNew);
+export default connect (null, actions) (withRouter (TemplateNew));

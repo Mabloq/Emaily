@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
-import {reduxForm, Field} from 'redux-form';
+import {reduxForm, Field, FieldArray} from 'redux-form';
 import {Link} from 'react-router-dom';
 import SurveyField from './SurveyField';
 import {connect} from 'react-redux';
 import {fetchTemplateDropdown} from '../../actions/index';
+import {fetchContactDropdown} from '../../actions/contacts';
 import _ from 'lodash';
 import validateEmails from '../../utils/validateEmails';
 import fields from './formFields';
 import TemplateField from './TemplateField';
-import Dropdown
-  from 'semantic-ui-react/dist/commonjs/modules/Dropdown/Dropdown';
+import ContactField from './ContactField';
 
 class SurveyForm extends Component {
   componentDidMount () {
     this.props.fetchTemplateDropdown ();
+    this.props.fetchContactDropdown ();
   }
   renderFields () {
     return fields.map (({label, name}, i) => (
@@ -39,7 +40,13 @@ class SurveyForm extends Component {
             label="Template"
             name="template"
             component={TemplateField}
-            data={this.props.dropdown}
+            data={this.props.templateDropdown}
+          />
+          <Field
+            label="Recipients"
+            name="recipients"
+            component={ContactField}
+            data={this.props.contactDropdown}
           />
           <Link to="/surveys" className="red btn-flat white-text left ">
             Cancel
@@ -71,15 +78,16 @@ function validate (values) {
 
 function mapStateToProps (state) {
   return {
-    dropdown: state.template.dropdown,
+    templateDropdown: state.template.dropdown,
+    contactDropdown: state.contacts.dropdown,
   };
 }
-const ConnectedSurvey = connect (mapStateToProps, {fetchTemplateDropdown}) (
-  SurveyForm
-);
+const ConnectedSurvey = connect (mapStateToProps, {
+  fetchTemplateDropdown,
+  fetchContactDropdown,
+}) (SurveyForm);
 
 export default reduxForm ({
-  validate,
   form: 'surveyForm',
   destroyOnUnmount: false,
 }) (ConnectedSurvey);

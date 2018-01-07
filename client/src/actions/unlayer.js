@@ -2,7 +2,7 @@ import {
   UPLOAD_TEMPLATE,
   GET_TEMPLATE,
   GET_TEMPLATES,
-  EDIT_TEMPLATE,
+  UPDATE_TEMPLATE,
   DELETE_TEMPLATE,
 } from './types';
 import axios from 'axios';
@@ -40,11 +40,11 @@ export const uploadTemplate = (
   });
 };
 
-export const editTemplate = (json, name) => {
+export const updateTemplate = (json, name) => {
   return dispatch => {
     dispatch ({
       payload: {},
-      type: EDIT_TEMPLATE,
+      type: UPDATE_TEMPLATE,
     });
   };
 };

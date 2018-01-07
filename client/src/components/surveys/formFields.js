@@ -9,14 +9,4 @@ export default [
     name: 'subject',
     msg: '* Oops! dont forget the subject line',
   },
-  {
-    label: 'Email Body',
-    name: 'body',
-    msg: '* Oops! make sure your users get your body content',
-  },
-  {
-    label: 'Recipient List',
-    name: 'recipients',
-    msg: '* Hey, add some recipeints please!',
-  },
 ];

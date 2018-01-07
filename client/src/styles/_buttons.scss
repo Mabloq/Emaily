@@ -1,0 +1,61 @@
+@import '_variables.scss';
+
+.free-trial-btn {
+    border: 2px $mabloq-green solid;
+    border-radius: 2px;
+    background-color: $mabloq-green;
+    box-shadow: rgba(0,0,0,.2) 0px 1px; 
+    color: white;
+    padding: 1.25em;
+    display: inline-block;
+    height: 54px;
+    line-height: 54px;
+    transition: .3s ease-out;
+    font-size: 1rem;
+    outline: 0;
+    padding: 0 2rem;
+    margin: 0 1rem;
+    &:hover {
+        cursor: pointer;
+        border: 2px $dark-mabloq-green solid;
+        background-color: $dark-mabloq-green;
+        color: #fff;
+    }
+}
+.learn-more-btn {
+ border: 2px black solid;
+ border-radius: 2px;
+ box-shadow: rgba(0,0,0,.2) 0px 1px; 
+ color: black;
+ padding: 0 2rem;
+ display: inline-block;
+ transition: .3s ease-out;
+ height: 54px;
+    line-height: 54px;
+    font-size: 1rem;
+    outline: 0;
+    margin: 0 .5rem;
+ 
+ &:hover {
+     cursor: pointer;
+     background-color: rgba(0,0,0,.2);
+     color: black;
+  
+ }
+}
+
+@media screen and (max-width: 380px) {
+    .free-trial-btn {
+        margin: 0 .5rem;
+        padding: 0 1rem;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .learn-more-btn {
+        margin: 0 .5rem;
+        padding: 0 1rem;
+        height: 40px;
+        line-height: 40px;
+    }
+}

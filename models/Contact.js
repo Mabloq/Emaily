@@ -1,12 +1,14 @@
 const mongoose = require ('mongoose');
 const {Schema} = mongoose;
 
-const surveySchema = new Schema ({
+const contactSchema = new Schema ({
+  firstName: {type: String, required: true},
+  lastName: {type: String, required: true},
   name: String,
-  email: String,
-  _user: {type: Schema.Types.ObjectId, ref: 'User'},
-  dateSent: Date,
-  lastResponded: Date,
+  company: String,
+  email: {type: String, required: true},
+  _user: {type: Schema.Types.ObjectId, ref: 'User', required: true},
+  created: Date,
 });
 
-mongoose.model ('surveys', surveySchema);
+mongoose.model ('contacts', contactSchema);

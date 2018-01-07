@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import EmailEditor from 'react-email-editor';
 import * as actions from '../../actions/unlayer';
-import {reduxForm, Field} from 'redux-form';
 import {setTimeout} from 'timers';
 
 class Template extends Component {
@@ -19,9 +19,13 @@ class Template extends Component {
   }
 
   saveDesign = () => {
-    this.editor.saveDesign (design => {
-      this.props.uploadTemplate (design, this.props.match.params.name);
-    });
+    this.editor
+      .saveDesign (design => {
+        this.props.uploadTemplate (design, this.props.match.params.name);
+      })
+      .then (() => {
+        this.props.history.push ('/templates');
+      });
   };
   loadDesign = () => {
     if (this.editor !== undefined) {
@@ -35,11 +39,13 @@ class Template extends Component {
     this.setState ({name: event.target.value});
   }
   deleteTemplate (id, name) {
-    this.props.deleteTemplate (id, name);
+    this.props.deleteTemplate (id, name).then (() => {
+      this.props.history.push ('/templates');
+    });
   }
 
   render () {
-    const {template, json} = this.props;
+    const {template} = this.props;
 
     return (
       <div style={{marginTop: '65px'}}>
@@ -80,7 +86,7 @@ class Template extends Component {
             marginLeft: '-5%',
           }}
           options={{
-            mergeTags: [{name: 'First Name', value: '${firstName}'}],
+            mergeTags: [{name: 'First Name', value: '{{firstName}}'}],
           }}
           ref={editor => (this.editor = editor)}
           onLoad={this.loadDesign}
@@ -96,4 +102,4 @@ const mapStateToProps = state => {
     json: state.template.templateJson,
   };
 };
-export default connect (mapStateToProps, actions) (Template);
+export default connect (mapStateToProps, actions) (withRouter (Template));

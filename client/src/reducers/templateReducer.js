@@ -2,7 +2,7 @@ import {
   UPLOAD_TEMPLATE,
   GET_TEMPLATE,
   GET_TEMPLATES,
-  EDIT_TEMPLATE,
+  UPDATE_TEMPLATE,
   DELETE_TEMPLATE,
   FETCH_DROPDOWN,
 } from '../actions/types';
@@ -24,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
     case UPLOAD_TEMPLATE:
       return {
         ...state,
-        ...action.payload,
+        templates: [...state.templates, action.payload],
       };
     case GET_TEMPLATE:
       return {
@@ -37,15 +37,24 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         templates: action.payload,
       };
-    case EDIT_TEMPLATE:
+    case UPDATE_TEMPLATE:
       return {
         ...state,
         ...action.payload,
       };
     case DELETE_TEMPLATE:
+      //create copy of the curreny state of templates
+      const currentTemplateToDelete = [...state.templates];
+      //determine at wich index in template array a template is to be deleted
+      const indexToDelete = currentTemplateToDelete.findIndex (template => {
+        return template._id == action.payload;
+      });
       return {
         ...state,
-        ...action.payload,
+        templates: [
+          ...currentTemplateToDelete.slice (0, indexToDelete),
+          ...currentTemplateToDelete.slice (indexToDelete + 1),
+        ],
       };
     case FETCH_DROPDOWN:
       return {

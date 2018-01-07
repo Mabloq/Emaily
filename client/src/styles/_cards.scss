@@ -4,17 +4,9 @@
 }
 
 
-.section-social {
-    //background image
-    background-color: #57b5c7;
-    background-image: linear-gradient(90deg, #57b5c7, #8ed4df);
-    padding: 15vh 0;
-    padding-bottom: 14em;
-   
-    
+.section-track {
     .img {
         position: absolute;
-       
         .fade-in-up {
             -webkit-transform: translate3d(0, 20%, 0);
             transform: translate3d(0, 20%, 0);
@@ -27,11 +19,10 @@
     img {
        border-radius: 5px;
     }
- 
      .ig-card {
         top: 200px;
-        width: 33.942%;
-        left: 32.116%;
+        width: 23.942%;
+        left: 10.116%;
         z-index: 3;
     }
     .google-card {
@@ -40,7 +31,7 @@
     }
     .fb-card {
         top: 40px;
-        right: 0% !important;
+        left: 30%;
         width: 37.80881% !important;
         top: 140px;
         z-index: 4;
@@ -64,7 +55,7 @@
     z-index: 2;
 }
 .section {
-    padding: 15vh 0 20vh;
+    height: 100vh;
     position: relative
 }
 

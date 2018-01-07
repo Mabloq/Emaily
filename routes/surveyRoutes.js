@@ -25,14 +25,15 @@ module.exports = app => {
 
   app.post ('/api/surveys', requireLogin, requireCredits, async (req, res) => {
     const {title, subject, body, recipients, template} = req.body;
-    console.log (template);
+    console.log (recipients);
     const survey = new Survey ({
       title,
       subject,
       body,
-      recipients: recipients
-        .split (',')
-        .map (email => ({email: email.trim ()})),
+      recipients: recipients.map (data => ({
+        email: data.email,
+        name: data.name,
+      })),
       _user: req.user.id,
       dateSent: Date.now (),
     });

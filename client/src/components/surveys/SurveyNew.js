@@ -14,7 +14,7 @@ class SurveryNew extends Component {
   }
 
   renderContent () {
-    if (this.state.showFormReview == true) {
+    if (this.state.showFormReview === true) {
       return (
         <FormReview
           onCancelSubmit={() => this.setState ({showFormReview: false})}

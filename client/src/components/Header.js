@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link, NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Payment from './Payments';
 
 class Header extends Component {
@@ -32,23 +32,32 @@ class Header extends Component {
     return (
       <div>
         <nav style={{zIndex: '99', position: 'fixed', top: 0}}>
+
           <div className="nav-wrapper white black-text">
             <Link
               to={this.props.auth ? '/surveys' : '/'}
-              style={{left: '5%'}}
+              // style={{left: '5%'}}
               className="brand-logo black-text"
             >
               Emaily
             </Link>
-
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
                 <Link
                   to="/templates"
                   className="black-text"
-                  style={{left: '10%'}}
+                  // style={{left: '10%'}}
                 >
                   Templates
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contacts"
+                  className="black-text"
+                  // style={{left: '20%'}}
+                >
+                  Contacts
                 </Link>
               </li>
               {this.renderContent ()}

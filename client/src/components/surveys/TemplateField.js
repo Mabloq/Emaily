@@ -1,19 +1,27 @@
 import React, {Component} from 'react';
-import {Dropdown} from 'semantic-ui-react';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class TemplateField extends Component {
+  constructor (props) {
+    super (props);
+    this.state = {
+      value: undefined,
+    };
+  }
+  handleOnChange (data) {
+    return this.props.input.onChange (data.value);
+  }
   render () {
+    const {multi, multiValue, value} = this.state;
     return (
       <div>
         <label style={{fontSize: '18px'}}>{this.props.label}</label>
-        <Dropdown
-          placeholder="Select Template"
-          fluid
-          selection
-          value={this.props.input.value}
-          onChange={(param, data) => this.props.input.onChange (data.value)}
+        <Select
+          style={{margin: '20px 0px'}}
           options={this.props.data}
-          style={{marginBottom: '20px', marginTop: '10px'}}
+          onChange={this.handleOnChange.bind (this)}
+          value={this.props.input.value}
         />
       </div>
     );

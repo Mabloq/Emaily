@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import * as actions from '../../../actions/unlayer';
-import {reduxForm, Field} from 'redux-form';
-import {setTimeout} from 'timers';
-import {Header, Table, Input} from 'semantic-ui-react';
+import {Table, Input} from 'semantic-ui-react';
 
 class Template extends Component {
   constructor (props, context) {
