@@ -14,7 +14,7 @@ export const fetchContacts = () => async dispatch => {
 };
 
 export const fetchContact = id => async dispatch => {
-  const res = await axios.get (`/api/contacts/${id}`);
+  const res = await axios.get (`/api/contact/${id}`);
   dispatch ({type: GET_CONTACT, payload: res.data});
 };
 

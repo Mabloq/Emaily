@@ -13,6 +13,12 @@ module.exports = app => {
     res.send (contacts);
   });
 
+  app.get ('/api/contact/:id', requireLogin, async (req, res) => {
+    const contact = await Contact.findById (req.params.id);
+    console.log (contact);
+    res.send (contact);
+  });
+
   app.post ('/api/contacts', requireLogin, async (req, res) => {
     //create a contact
     console.log (req.body);
@@ -36,6 +42,7 @@ module.exports = app => {
   });
 
   app.get ('/api/contacts/dropdown', requireLogin, async (req, res) => {
+    console.log (req.body);
     const contacts = await Contact.find ({_user: req.user.id});
 
     const dropdown = contacts.map (contact => {
@@ -45,6 +52,18 @@ module.exports = app => {
       };
     });
     res.send (dropdown);
+  });
+
+  app.delete ('/api/contacts/:id', async (req, res) => {
+    const contact = await Contact.findByIdAndRemove (
+      req.params.id,
+      (err, contact) => {
+        if (err) {
+          throw err;
+        }
+        res.json (contact);
+      }
+    );
   });
   // app.get ('/api/contacts/:id', (req, res) => {
   //   //get single contact

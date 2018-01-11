@@ -11,11 +11,10 @@ class Contacts extends Component {
   handleChange (event) {
     this.setState ({name: event.target.value});
   }
-  handleView (id, name) {
-    this.setState ({name});
+  handleView (id) {
     this.props
-      .fetchContact (id, name)
-      .then (() => this.props.history.push (`/contacts/${id}/${name}`));
+      .fetchContact (id)
+      .then (() => this.props.history.push (`/contact/${id}`));
   }
 
   renderTable () {

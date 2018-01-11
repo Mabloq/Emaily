@@ -16,6 +16,7 @@ import Template from './components/Template';
 import Templates from './components/Template/Templates/index';
 import TemplateNew from './components/Template/TemplateNew';
 import Contacts from './components/Contacts';
+import ContactSingle from './components/Contacts/ContactSingle';
 import ContactNew from './components/Contacts/ContactCreate/ContactNew';
 import 'normalize.css';
 import './App.css';
@@ -39,6 +40,7 @@ class App extends Component {
             <Route path="/templates" component={Templates} />
             <Route path="/template/:id/:name" component={Template} />
             <Route path="/contacts" component={Contacts} />
+            <Route path="/contact/:id" component={ContactSingle} />
             <Route path="/automation" component={Automation} />
             <Route path="/tracking" component={Tracking} />
             <Route path="/template-try" component={TryTemplate} />
