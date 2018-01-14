@@ -44,7 +44,7 @@ class TemplateField extends Component {
     return (
       <div>
         <label style={{fontSize: '18px'}}>{this.props.label}</label>
-        <Select.Creatable
+        <Select
           style={{margin: '20px 0px'}}
           multi={multi}
           options={this.state.options}

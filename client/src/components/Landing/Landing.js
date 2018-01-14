@@ -73,7 +73,7 @@ class Landing extends Component {
                   Try Free
                 </Link>
                 <Link to="/docs" className="learn-more-btn">
-                  Learn More
+                  Docs
                 </Link>
               </div>
 

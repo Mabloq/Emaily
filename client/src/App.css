@@ -658,9 +658,24 @@ section {
   .input-form:after {
     color: white !important; }
 
+.docs {
+  display: grid;
+  grid-template-columns: 1fr 5fr; }
+
+.doc-menu {
+  grid-column: 1; }
+
+.doc-page {
+  grid-column: 2 /-1;
+  padding: 5%; }
+
 body {
   line-height: 1;
   background: #fff;
   box-sizing: border-box;
   font-family: "Open Sans", Verdana, Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased; }
+  -webkit-font-smoothing: antialiased;
+  height: 100%; }
+
+#root {
+  height: 100%; }

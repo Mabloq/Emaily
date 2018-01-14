@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {fetchTemplateDropdown} from '../../actions/index';
 import {fetchContactDropdown} from '../../actions/contacts';
 import _ from 'lodash';
-import validateEmails from '../../utils/validateEmails';
+
 import fields from './formFields';
 import TemplateField from './TemplateField';
 import ContactField from './ContactField';
@@ -65,8 +65,6 @@ class SurveyForm extends Component {
 function validate (values) {
   const errors = {};
 
-  errors.recipients = validateEmails (values.recipients || '');
-
   _.each (fields, ({name, msg}) => {
     if (!values[name]) {
       errors[name] = msg;
@@ -88,6 +86,7 @@ const ConnectedSurvey = connect (mapStateToProps, {
 }) (SurveyForm);
 
 export default reduxForm ({
+  validate,
   form: 'surveyForm',
   destroyOnUnmount: false,
 }) (ConnectedSurvey);

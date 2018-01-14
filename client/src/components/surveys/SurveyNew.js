@@ -35,10 +35,6 @@ class SurveryNew extends Component {
         <div className="row">
           {this.renderContent ()}
         </div>
-
-        <div className="row">
-          Hey
-        </div>
       </div>
     );
   }

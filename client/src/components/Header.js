@@ -17,6 +17,33 @@ class Header extends Component {
 
       default:
         return [
+          <li>
+            <Link
+              to="/surveys"
+              className="black-text"
+              // style={{left: '10%'}}
+            >
+              Send
+            </Link>
+          </li>,
+          <li>
+            <Link
+              to="/templates"
+              className="black-text"
+              // style={{left: '10%'}}
+            >
+              Templates
+            </Link>
+          </li>,
+          <li>
+            <Link
+              to="/contacts"
+              className="black-text"
+              // style={{left: '20%'}}
+            >
+              Contacts
+            </Link>
+          </li>,
           <li key="1"><Payment /></li>,
           <li key="2" style={{margin: '0 50px'}}>
             Credits: {this.props.auth.credits}
@@ -42,24 +69,7 @@ class Header extends Component {
               Emaily
             </Link>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-              <li>
-                <Link
-                  to="/templates"
-                  className="black-text"
-                  // style={{left: '10%'}}
-                >
-                  Templates
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contacts"
-                  className="black-text"
-                  // style={{left: '20%'}}
-                >
-                  Contacts
-                </Link>
-              </li>
+
               {this.renderContent ()}
             </ul>
           </div>

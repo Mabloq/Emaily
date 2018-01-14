@@ -1,0 +1,12 @@
+.docs {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.doc-menu {
+    grid-column: 1
+}
+.doc-page {
+    grid-column: 2 /-1;
+    padding: 5%;
+}

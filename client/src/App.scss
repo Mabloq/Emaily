@@ -3,6 +3,7 @@
 @import 'styles/_mediaQueries.scss';
 @import 'styles/_buttons.scss';
 @import 'styles/_automation.scss';
+@import 'styles/_docs.scss';
 // html,
 // body,div {
 //     width: 100%;
@@ -14,5 +15,9 @@ body {
     background: #fff;
     box-sizing: border-box;
     font-family: "Open Sans", Verdana, Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased
+    -webkit-font-smoothing: antialiased;
+    height: 100%;
+}
+#root {
+    height: 100%;
 }

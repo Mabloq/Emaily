@@ -9,7 +9,7 @@ import Landing from './components/Landing/Landing';
 import Automation from './components/Landing/Automation';
 import Tracking from './components/Landing/Tracking';
 import TryTemplate from './components/Landing/TryTemplate';
-import Docs from './components/Landing/Docs';
+import Docs from './components/Landing/Docs/index';
 import Dashboard from './components/Dashboard';
 import SurveyNew from './components/surveys/SurveyNew';
 import Template from './components/Template';
@@ -27,9 +27,9 @@ class App extends Component {
   }
   render () {
     return (
-      <div>
+      <div style={{height: '100%'}}>
         <BrowserRouter>
-          <div>
+          <div style={{height: '100%'}}>
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
